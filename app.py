@@ -4,10 +4,13 @@ from flask_login import LoginManager, UserMixin, login_user, logout_user, login_
 from forms import PostForm, LoginForm, RegistrationForm
 from models import db, User, Post
 from flask import abort
+from flask_cors import CORS
+
 
 app = Flask(__name__, static_folder='static', static_url_path='/static')
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///blockchain.db'
 app.config['SECRET_KEY'] = 'your_secret_key'
+CORS(app)
 
 db.init_app(app)
 login_manager = LoginManager(app)
